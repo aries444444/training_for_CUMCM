@@ -12,14 +12,21 @@
 \usepackage{listings}
 \usepackage{xcolor}
 
+\newfontfamily\codefont{Microsoft YaHei}
+
 \lstset{
     language=Python,
-    basicstyle=\ttfamily\small,
+    basicstyle=\codefont\scriptsize,
     numbers=left,
     numberstyle=\tiny,
     frame=single,
     breaklines=true,
-    showstringspaces=false
+    breakatwhitespace=false,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    tabsize=4,
+    captionpos=t
 }
 \usepackage{setspace}
 
@@ -42,17 +49,18 @@
     \heiti 绿色可回收物回收量动态预测与回收体系稳定性分析
 }
 
-\author{
-    西交利物浦大学数学建模训练 2026\\
-    Problem A
-}
-
-\date{}
-
 \begin{document}
 
 \pagestyle{plain}
-\maketitle
+\hypersetup{
+    pdftitle={绿色可回收物回收量动态预测与回收体系稳定性分析},
+    pdfauthor={}
+}
+
+\begin{center}
+    {\zihao{2}\heiti 绿色可回收物回收量动态预测与回收体系稳定性分析}
+\end{center}
+\vspace{0.8em}
 
 \begin{abstract}
 {\zihao{5}\kaishu
@@ -64,13 +72,14 @@
 
 \newpage
 
-\tableofcontents
-
-\newpage
-
 \section{引言}
 在我国“双碳”战略全面推进背景下，生活垃圾分类与可回收物资源化循环利用成为城市生态文明建设的关键抓手。上海打造的“沪尚回收”构建“点—站—场”三级全域回收网络，依托智能回收箱、社区便民点位实现居民就近回收覆盖，但实际运营中回收量受居民参与意愿、宣传推广力度、站点运维水平、清运调度效率等多重因素共同干扰，整体呈现非线性动态波动特征。传统静态规划方法仅能完成存量数据统计，无法刻画回收量长期演化趋势，也难以量化识别系统运行失衡隐患，缺乏支撑长效运营的定量分析工具。
-针对上述现实痛点，本文以“沪尚回收”实测时序数据为基础，采用递进式动力学建模思路，依次搭建基础增长模型、引入促进与抑制因子的改进Logistic模型，结合平衡点稳定性理论、单参数扰动灵敏度分析完整解析回收系统演化规律。通过量化各参数作用强度与安全运行边界，区分不同管控措施的收益差异，最终形成分层、可落地的运维优化策略，为国内同类城市绿色回收体系的稳定运营与精细化管理提供定量参考。
+针对上述现实痛点，本文以赛题给出的“沪尚回收”实测时序数据与固定参数为基础\cite{problem}，采用递进式动力学建模思路，依次搭建基础增长模型、引入促进与抑制因子的改进Logistic模型，结合平衡点稳定性理论、单参数扰动灵敏度分析完整解析回收系统演化规律。通过量化各参数作用强度与安全运行边界，区分不同管控措施的收益差异，最终形成分层、可落地的运维优化策略，为国内同类城市绿色回收体系的稳定运营与精细化管理提供定量参考。
+
+本文在参考文献著录核对、文字规范化和程序复现性检查环节使用了
+OpenAI 开发的 Codex（GPT-5）作为辅助工具\cite{openai_codex}；模型构建、参数选择、
+数学推导、数值结果解释及最终取舍均由参赛队完成并负责。具体使用记录见支撑材料
+中的“AI工具使用详情.pdf”。
 
 
 \section{问题分析}
@@ -396,9 +405,11 @@ $r\le\gamma$ 且 $K_{\text{eff}}\ge K$ 时，
 该线性近似在 $r$ 和 $K_{\text{eff}}$ 的相对不确定度较小（$\sigma_r/r \approx 7.8\%$，
 $\sigma_{K_{\text{eff}}}/K_{\text{eff}} \approx 0.9\%$）的条件下是合理的。
 \begin{equation}
-\text{协方差}\;\operatorname{Cov}(\alpha,\beta) \approx 0 \quad
-\text{（$\alpha$ 仅依赖 $K_{\text{eff}}$，$\beta$ 仅依赖 $r$，拟合协方差
-$\operatorname{Cov}(r,K_{\text{eff}})$ 需由协方差矩阵给出，此处保守取零）}
+\begin{aligned}
+\operatorname{Cov}(\alpha,\beta) &\approx 0,\\
+&\text{其中 $\alpha$ 仅依赖 $K_{\text{eff}}$，$\beta$ 仅依赖 $r$；}\\
+&\text{$\operatorname{Cov}(r,K_{\text{eff}})$ 应由拟合协方差矩阵给出，此处近似取零。}
+\end{aligned}
 \end{equation}
 
 \textbf{$\alpha$ 的统计显著性}：小样本下（$n-p=7$）采用 $t$ 分布构造置信区间。
@@ -603,8 +614,10 @@ f'(x) = \frac{d}{dx}\left[ r x \left(1 - \frac{x}{K_{\text{eff}}}\right) \right]
        = r\left(1 - \frac{2x}{K_{\text{eff}}}\right)
 \end{equation}
 \begin{equation}
-f'(0) = r > 0 \;\;(\text{数学上不稳定，物理不可达});\qquad
-f'(K_{\text{eff}}) = r(1 - 2) = -r < 0 \;\;(\text{渐近稳定})
+\begin{aligned}
+f'(0) &= r > 0 &&(\text{数学上不稳定，物理不可达}),\\
+f'(K_{\text{eff}}) &= r(1 - 2) = -r < 0 &&(\text{渐近稳定}).
+\end{aligned}
 \end{equation}
 
 $\lambda = f'(K_{\text{eff}}) = -r < 0$ \textbf{恒为负}——物理平衡点具有
@@ -1054,7 +1067,7 @@ $K$ 的 $R^2$ 降幅（0.7285）是次敏感参数 $\gamma$（0.0105）的 $\sim
 \centering
 \caption{参数敏感度等级划分表}
 \label{tab:sensitivity_rank}
-\begin{tabular}{l c l p{6cm}}
+\begin{tabular}{p{2.2cm} c p{4.6cm} p{5.5cm}}
 \toprule
 敏感度等级 & 参数 & 弹性特征 & 运营含义 \\
 \midrule
@@ -1130,7 +1143,7 @@ OAT（One-At-a-Time）方法简洁直观、计算成本低，适合作为参数�
     \item \textbf{未捕获高阶结构}：弹性系数仅为一阶导数，无法区分线性传导与非线性放大。本文已通过 $\pm10\%$ 数值实验验证 $K$ 的弹性确为线性传导。
 \end{enumerate}
 
-后续可采用 Sobol' 全局灵敏度分析\cite{saltelli2008}量化参数交互效应，或引入贝叶斯方法为 $K$ 赋予先验分布，生成带置信区间的预测曲线。
+后续可采用 Sobol' 全局灵敏度分析\cite{saltelli}量化参数交互效应，或引入贝叶斯方法为 $K$ 赋予先验分布，生成带置信区间的预测曲线。
 
 \subsubsection{与 问题三 稳定性结论的联合分析}
 
@@ -1340,33 +1353,98 @@ $K$ 的 $R^2$ 降幅（$0.7285$）是 $\gamma$（$0.0105$）的约 70 倍、$\be
 \newpage
 \begin{thebibliography}{99}
 
-\bibitem{problem} 西交利物浦大学数学建模训练 2026 Problem A 题目及附件数据[Z]. 2026.
+\bibitem{problem} 2026 年数学建模训练赛 A 题及附件数据[Z]. 2026.
 
-\bibitem{verhulst} Verhulst P F. Notice sur la loi que la population suit dans son accroissement[J]. Correspondance Math\'{e}matique et Physique, 1838, 10: 113--121.
+\bibitem{openai_codex} OpenAI Codex, GPT-5, OpenAI, 2026-07-30.
 
-\bibitem{efron} Efron B, Tibshirani R J. An Introduction to the Bootstrap[M]. Boca Raton: Chapman \& Hall/CRC, 1994.
+\bibitem{verhulst} VERHULST P F. Notice sur la loi que la population suit dans son accroissement[J]. Correspondance Math\'{e}matique et Physique, 1838, 10: 113--121.
 
-\bibitem{strogatz} Strogatz S H. Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering[M]. 3rd ed. Boca Raton: CRC Press, 2024.
+\bibitem{efron} EFRON B, TIBSHIRANI R J. An Introduction to the Bootstrap[M]. New York: Chapman \& Hall, 1993.
 
-\bibitem{saltelli} Saltelli A, Ratto M, Andres T, et al. Global Sensitivity Analysis: The Primer[M]. Chichester: John Wiley \& Sons, 2008.
+\bibitem{strogatz} STROGATZ S H. Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering[M]. 3rd ed. Boca Raton: Chapman \& Hall/CRC, 2024.
+
+\bibitem{saltelli} SALTELLI A, RATTO M, ANDRES T, et al. Global Sensitivity Analysis: The Primer[M]. Chichester: John Wiley \& Sons, 2008. DOI: 10.1002/9780470725184.
 
 \end{thebibliography}
 
+\clearpage
 \appendix
-\section{AI辅助工具使用说明}
-\subsection{工具选用概况}
-本文在建模全流程采用大语言模型辅助文献梳理、动力学方程推导、论文文本润色、结构调整与逻辑优化。主要用于：模型思路发散、微分方程稳定性理论查阅、报告段落措辞优化、章节过渡文字撰写。所有模型构建、参数拟合、稳定性数学推导、结果分析均由作者独立完成，AI输出内容经过人工校验、修改与取舍。
 
-\subsection{使用边界与规范说明}
-1. 数值求解、平衡点分析、灵敏度分析等核心数学推导工作由作者自主完成，AI仅作为资料检索与文字辅助工具；
-2. 所有生成文本均经过人工审阅、改写，剔除逻辑错误，统一论文学术表述风格；
-3. 图表方案、模型结构、优化策略等核心研究结论均为团队自主讨论确定，未直接采纳AI最终方案。
+\section{支撑材料文件清单与复现说明}
 
-\section{Python源代码}
-\begin{lstlisting}[language=Python]
-# ========== 此处粘贴你的完整Python代码 ==========
-# Logistic模型拟合、平衡点求解、OAT灵敏度分析代码
-\end{lstlisting}
+\subsection{支撑材料文件清单}
+
+支撑材料压缩包按“代码、结果图、AI 使用详情”三类组织。赛题提供的 9 个观测点及固定参数
+已逐项写入程序，未另行重复提交赛题原始附件；本文未使用自主查阅的外部数据集。
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{4.6cm}p{2.7cm}p{5.9cm}}
+\toprule
+文件 & 对应内容 & 作用与主要输出 \\
+\midrule
+\path{Q1/logistic_model.py} & 问题一 & 基础 Logistic 预测、误差指标与 \path{logistic_fit.png} \\
+\path{Q2/advanced_model.py} & 问题二 & 约束非线性拟合、Delta 方法与 \path{model_q2.png} \\
+\path{Q2/bootstrap_validation.py} & 问题二 & $B=10\,000$ 次残差 Bootstrap 交叉验证 \\
+\path{Q3/stability_analysis.py} & 问题三 & 平衡点、特征值、性能边界与 \path{stability_analysis.png} \\
+\path{Q4/sensitivity_analysis.py} & 问题四 & $\pm10\%$ OAT 分析及两幅灵敏度结果图 \\
+\path{requirements.txt} & 运行环境 & Python 第三方依赖及最低版本 \\
+\path{README.md} & 复现说明 & 运行顺序、命令、输入与输出说明 \\
+{\codefont AI工具使用详情.pdf} & AI 使用记录 & 工具、用途、关键交互及人工修改情况 \\
+\bottomrule
+\end{tabular}
+\caption{支撑材料文件列表}
+\label{tab:supporting-files}
+\end{table}
+
+\subsection{运行环境与复现顺序}
+
+建议使用 Python 3.10 或更高版本，安装 NumPy、SciPy 与 Matplotlib 后，依次进入
+\texttt{Q1}、\texttt{Q2}、\texttt{Q3}、\texttt{Q4} 目录运行表
+\ref{tab:supporting-files} 中的脚本。各脚本均内置赛题数据与固定随机种子，无需联网，
+可独立运行；图像文件输出到脚本所在目录。推荐运行顺序为问题一、问题二（先
+\texttt{advanced\_model.py}，后 \texttt{bootstrap\_validation.py}）、问题三、问题四。
+
+\section{AI工具使用说明}
+
+本文使用 OpenAI Codex（GPT-5）辅助核对参考文献著录信息、检查 LaTeX 引用闭环、
+根据竞赛格式规范完善附录、复核程序可运行性，并对相关说明文字进行规范化。
+AI 未代替参赛队作出模型选择，未更改观测数据或数值结果，也未替代参赛队对推导和结论
+进行验证。参赛队对最终论文的原创性、真实性和准确性承担全部责任。工具版本、使用日期、
+关键提示词与回复、采纳及人工修改情况，另见支撑材料中的“AI工具使用详情.pdf”。
+如在提交前继续使用其他 AI 工具或开展新的关键交互，须同步补充该文件及参考文献记录。
+
+\section{关键Python代码摘录}
+
+\subsection{问题一：基础 Logistic 模型}
+
+以下仅保留解析模型与误差评价的核心实现；绘图、控制台输出和报告生成代码从略。
+\lstinputlisting[language=Python,firstline=23,lastline=41,firstnumber=23]{../Q1/logistic_model.py}
+
+\subsection{问题二：改进模型与参数拟合}
+
+以下代码完成带物理约束的非线性拟合、参数反解和 Delta 方法误差传播。
+\lstinputlisting[language=Python,firstline=47,lastline=78,firstnumber=47]{../Q2/advanced_model.py}
+
+\subsection{问题二：残差 Bootstrap 验证}
+
+以下为固定随机种子、残差重抽样、重复拟合和经验区间计算的关键循环。
+\lstinputlisting[language=Python,firstline=68,lastline=117,firstnumber=68]{../Q2/bootstrap_validation.py}
+
+\subsection{问题三：平衡点与稳定性分析}
+
+以下代码给出平衡点特征值、松弛时间和运营安全边界的计算。
+\lstinputlisting[language=Python,firstline=66,lastline=98,firstnumber=66]{../Q3/stability_analysis.py}
+
+\subsection{问题四：OAT 参数灵敏度分析}
+
+以下为四参数 $\pm10\%$ 单因素扰动、评价指标计算与解析弹性计算。
+\lstinputlisting[language=Python,firstline=55,lastline=114,firstnumber=55]{../Q4/sensitivity_analysis.py}
+
+为控制论文附录篇幅，以上省略了重复的数据定义、绘图和结果文件写出语句。
+五个完整、可直接运行的原始程序均收录于独立提交的支撑材料压缩包中，
+文件路径与运行顺序见附录 A。
 
 
 \end{document}
