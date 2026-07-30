@@ -1,0 +1,62 @@
+\contentsline {section}{\numberline {1}引言}{4}{section.1}%
+\contentsline {section}{\numberline {2}问题分析}{4}{section.2}%
+\contentsline {section}{\numberline {3}模型假设}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}关于模型结构的基本假设}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}关于参数结构与取值的假设}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}关于数据与空间的假设}{5}{subsection.3.3}%
+\contentsline {section}{\numberline {4}符号说明}{5}{section.4}%
+\contentsline {section}{\numberline {5}模型建立与求解}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}问题一：基础动态模型}{6}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}模型建立}{6}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}参数}{6}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}模型评估}{6}{subsubsection.5.1.3}%
+\contentsline {subsubsection}{\numberline {5.1.4}模型结果分析}{7}{subsubsection.5.1.4}%
+\contentsline {paragraph}{预测与残差}{7}{table.4}%
+\contentsline {subsection}{\numberline {5.2}问题二：引入促进与抑制作用的改进模型}{8}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}模型建立}{8}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}标准 Logistic 表达式}{8}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}参数}{9}{subsubsection.5.2.3}%
+\contentsline {paragraph}{拟合方法与算法}{9}{paragraph*.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}计算}{11}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.5}预测}{12}{subsubsection.5.2.5}%
+\contentsline {subsection}{\numberline {5.3}问题三：平衡点与稳定性分析}{12}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}模型与物理定义域}{12}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}平衡点求解与物理解释}{13}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}相线分析与定性稳定性}{13}{subsubsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.4}线性稳定性分析：定量收敛刻画}{14}{subsubsection.5.3.4}%
+\contentsline {subsubsection}{\numberline {5.3.5}结构稳定性：参数空间内的分岔分析}{14}{subsubsection.5.3.5}%
+\contentsline {paragraph}{结构稳定性结论}{15}{paragraph*.4}%
+\contentsline {subsubsection}{\numberline {5.3.6}实用安全边界}{16}{subsubsection.5.3.6}%
+\contentsline {paragraph}{增长率约束}{16}{paragraph*.5}%
+\contentsline {paragraph}{容量约束}{16}{paragraph*.6}%
+\contentsline {paragraph}{安全运行范围与裕度}{16}{table.8}%
+\contentsline {subsubsection}{\numberline {5.3.7}参数解耦与独立调控}{16}{subsubsection.5.3.7}%
+\contentsline {subsection}{\numberline {5.4}问题四：参数灵敏度分析}{17}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}问题背景与分析目标}{17}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}方法}{17}{subsubsection.5.4.2}%
+\contentsline {paragraph}{模型回顾}{17}{paragraph*.8}%
+\contentsline {paragraph}{参数物理意义（结合``沪尚回收''实际场景）}{18}{table.9}%
+\contentsline {paragraph}{OAT 扰动方案}{18}{paragraph*.10}%
+\contentsline {subsubsection}{\numberline {5.4.3}扰动结果与数据解读}{18}{subsubsection.5.4.3}%
+\contentsline {paragraph}{$\gamma $（固有增长率）$\pm 10\%$}{19}{paragraph*.11}%
+\contentsline {paragraph}{$\beta $（抑制系数）$\pm 10\%$}{19}{paragraph*.12}%
+\contentsline {paragraph}{$\alpha $（促进系数）$\pm 10\%$}{20}{paragraph*.13}%
+\contentsline {paragraph}{$K$（基准容量）$\pm 10\%$}{21}{paragraph*.14}%
+\contentsline {subsubsection}{\numberline {5.4.4}灵敏度排序与参数等级}{21}{subsubsection.5.4.4}%
+\contentsline {paragraph}{对 $R^2$ 的影响}{21}{table.15}%
+\contentsline {paragraph}{对 MAE 的影响}{21}{table.16}%
+\contentsline {paragraph}{综合敏感等级}{22}{table.17}%
+\contentsline {subsubsection}{\numberline {5.4.5}解析弹性汇总}{22}{subsubsection.5.4.5}%
+\contentsline {subsubsection}{\numberline {5.4.6}预测包络线分析}{23}{subsubsection.5.4.6}%
+\contentsline {subsubsection}{\numberline {5.4.7}OAT 方法的局限性与补充讨论}{23}{subsubsection.5.4.7}%
+\contentsline {subsubsection}{\numberline {5.4.8}与 问题三 稳定性结论的联合分析}{24}{subsubsection.5.4.8}%
+\contentsline {subsubsection}{\numberline {5.4.9}关键结论与长效调控策略}{25}{subsubsection.5.4.9}%
+\contentsline {section}{\numberline {6}模型评价与改进}{27}{section.6}%
+\contentsline {subsection}{\numberline {6.1}模型优点}{27}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}模型不足与改进方向}{28}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}模型适用性说明}{28}{subsection.6.3}%
+\contentsline {section}{\numberline {7}结论}{28}{section.7}%
+\contentsline {section}{\numberline {A}AI辅助工具使用说明}{30}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}工具选用概况}{30}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}使用边界与规范说明}{30}{subsection.A.2}%
+\contentsline {section}{\numberline {B}Python源代码}{30}{appendix.B}%
