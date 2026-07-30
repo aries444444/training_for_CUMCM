@@ -82,15 +82,6 @@ A key advantage of this model: $\alpha$ and $\beta$ are **fully decoupled**.
 This enables **independent tuning**: policymakers can raise $\alpha$ to expand
 total capacity while separately managing $\beta$ to maintain adequate growth speed.
 
-## Sensitivity Preview (-> Q4)
-
-With $\pm 10\%$ perturbations on $\alpha$ and $\beta$:
-
-| Parameter | -10% | Nominal | +10% | Effect on |
-|-----------|------|---------|------|-----------|
-| $\alpha$ | $0.0147$ | $0.0164$ | $0.0180$ | $K_{\text{eff}}$: $8129 / 8142 / 8155$ |
-| $\beta$ | $1.43$ | $1.59$ | $1.75$ | $r$: $0.0090 / 0.0085 / $0.0080$ |
-
 ## Key Findings
 
 1. **Structurally stable**: $r = \gamma/(1+\beta) > 0$ for all $\alpha,\beta \geq 0$ — no bifurcation exists.

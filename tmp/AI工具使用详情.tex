@@ -1,0 +1,102 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{ctexart}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\hypersetup{
+  pdftitle={AI工具使用详情},
+  pdfauthor={}
+}
+
+\begin{document}
+
+\begin{center}
+{\zihao{2}\heiti AI工具使用详情}
+\end{center}
+
+\section*{一、工具名称和版本}
+
+\begin{longtable}{p{3.4cm}p{4.2cm}p{5.6cm}}
+\toprule
+工具名称 & 版本/型号与开发机构 & 使用日期 \\
+\midrule
+OpenAI Codex & GPT-5；OpenAI & 2026-07-30 \\
+\bottomrule
+\end{longtable}
+
+\section*{二、具体使用目的和环节}
+
+\begin{enumerate}[leftmargin=2em]
+  \item 核对论文参考文献的作者、题名、出版年、出版社、卷页和 DOI，并检查正文引用与文后条目的对应关系。
+  \item 对照全国大学生数学建模竞赛组委会发布的 2026 年论文格式规范和 AI 工具使用规定，
+        检查目录、身份信息、正文页数、附录内容和支撑材料要求。
+  \item 将原附录中的程序占位符替换为关键 Python 代码摘录，并将实际使用的完整程序
+        收录于支撑材料，补充文件清单、运行环境、复现顺序和 AI 使用说明。
+  \item 执行问题一至问题四的 5 个 Python 程序，核对主要拟合指标、Bootstrap 区间、
+        稳定性边界和灵敏度结果，并检查最终 LaTeX/PDF 的引用、版式和文件大小。
+\end{enumerate}
+
+\section*{三、关键交互记录}
+
+\subsection*{记录 1：任务提出}
+
+\textbf{参赛队提示词：}
+
+\begin{quote}
+检查和完善参考文献，完成附录，使之符合中国大学生建模大赛的要求。
+\end{quote}
+
+\textbf{AI 回复要点：}
+
+AI 读取当前 LaTeX 主稿、现有参考文献、编译日志和问题一至问题四的程序，
+对照官方规则提出以下修改：删除电子版目录和学校身份信息；修复未定义引用；
+统一参考文献著录；在正文标注 AI 使用；在附录加入支撑材料清单、复现步骤和
+关键代码摘录，并在支撑材料中保留全部完整源程序；另行生成本使用详情文件。
+
+\textbf{采纳与人工修改：}
+
+参赛队确认以当前仓库的新主稿为准。相关修改由参赛队逐项审阅后采纳；
+模型方程、参数值、观测数据、数值结论和管理建议未由 AI 擅自更改。
+
+\subsection*{记录 2：仓库更新}
+
+\textbf{参赛队提示词：}
+
+\begin{quote}
+仓库有更新。用新文件。
+\end{quote}
+
+\textbf{AI 回复要点：}
+
+AI 放弃旧文件状态，重新定位更新时间最新的
+\texttt{main/main.tex} 和 \texttt{main/main.pdf}，并以新文件重新执行引用检查、
+程序复现、编译和 PDF 版面核验。
+
+\textbf{采纳与人工修改：}
+
+参赛队确认该处理方式。AI 未覆盖更新前的用户文件，所有修改均施加在更新后的主稿上。
+
+\section*{四、使用边界与责任说明}
+
+\begin{enumerate}[leftmargin=2em]
+  \item AI 仅用于文献著录、格式合规、文字规范化、程序执行与复现性检查。
+  \item 核心建模思路、数学推导、参数解释、数值结论和策略建议由参赛队独立完成。
+  \item AI 给出的文献与规则信息均由参赛队通过出版机构页面、竞赛官方网站和程序运行结果复核。
+  \item 参赛队对最终提交作品的原创性、真实性和准确性承担全部责任。
+  \item 若提交前新增 AI 工具或关键交互，参赛队应如实补充本文件，并同步更新正文标注与参考文献。
+\end{enumerate}
+
+\section*{五、核验依据}
+
+\begin{itemize}[leftmargin=2em]
+  \item 全国大学生数学建模竞赛论文格式规范（2026 年修订稿）；
+  \item 全国大学生数学建模竞赛参赛规则（2026 年修订稿）；
+  \item 全国大学生数学建模竞赛人工智能工具使用规定（2025 年试行）。
+\end{itemize}
+
+\end{document}
